@@ -19,9 +19,6 @@ abstract class _NewsStoreBase with Store {
   bool isSearched = false;
 
   @observable
-  bool isDarkModeActive = false;
-
-  @observable
   ObservableList<String> searchHistory = ObservableList();
 
   @observable
@@ -29,11 +26,6 @@ abstract class _NewsStoreBase with Store {
 
   @observable
   ObservableList<Article> searchedArticles = ObservableList();
-
-  @action
-  void changeDarkModeStatus() {
-    isDarkModeActive = !isDarkModeActive;
-  }
 
   @action
   void changeCategory(String cat) {

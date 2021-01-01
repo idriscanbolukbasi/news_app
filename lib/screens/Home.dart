@@ -67,6 +67,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             return store.isSearchActive
                 ? TextField(
                     decoration: InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
                       hintText: "Aramak istediğiniz kelime...",
                     ),
                     controller: _searchController,
@@ -128,11 +131,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         ));
 
                       case FutureStatus.pending:
-                        return Center(child: CircularProgressIndicator());
+                        return Center(
+                            child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.blue),
+                        ));
 
                       case FutureStatus.fulfilled:
                         final List<Article> articles = future.result;
                         return RefreshIndicator(
+                          color: Colors.blue,
                           onRefresh: _refresh,
                           child: NewsView(
                             articles: articles,

@@ -54,21 +54,6 @@ mixin _$NewsStore on _NewsStoreBase, Store {
     });
   }
 
-  final _$isDarkModeActiveAtom = Atom(name: '_NewsStoreBase.isDarkModeActive');
-
-  @override
-  bool get isDarkModeActive {
-    _$isDarkModeActiveAtom.reportRead();
-    return super.isDarkModeActive;
-  }
-
-  @override
-  set isDarkModeActive(bool value) {
-    _$isDarkModeActiveAtom.reportWrite(value, super.isDarkModeActive, () {
-      super.isDarkModeActive = value;
-    });
-  }
-
   final _$searchHistoryAtom = Atom(name: '_NewsStoreBase.searchHistory');
 
   @override
@@ -116,17 +101,6 @@ mixin _$NewsStore on _NewsStoreBase, Store {
 
   final _$_NewsStoreBaseActionController =
       ActionController(name: '_NewsStoreBase');
-
-  @override
-  void changeDarkModeStatus() {
-    final _$actionInfo = _$_NewsStoreBaseActionController.startAction(
-        name: '_NewsStoreBase.changeDarkModeStatus');
-    try {
-      return super.changeDarkModeStatus();
-    } finally {
-      _$_NewsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   void changeCategory(String cat) {
@@ -200,7 +174,6 @@ mixin _$NewsStore on _NewsStoreBase, Store {
 category: ${category},
 isSearchActive: ${isSearchActive},
 isSearched: ${isSearched},
-isDarkModeActive: ${isDarkModeActive},
 searchHistory: ${searchHistory},
 articles: ${articles},
 searchedArticles: ${searchedArticles}

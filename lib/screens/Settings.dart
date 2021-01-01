@@ -249,7 +249,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ],
                   ),
                   Text(
-                    "v1.0",
+                    "v1.2",
                     style: TextStyle(fontSize: 16),
                   )
                 ],

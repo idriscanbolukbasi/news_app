@@ -10,15 +10,19 @@ class SearchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: ListView.builder(
-            itemCount: this.searchedArticles.length,
-            itemBuilder: (context, index) {
-              Article article = this.searchedArticles[index];
-              return BlogTile(
-                  imageUrl: article.image,
-                  title: article.title,
-                  description: article.description,
-                  url: article.link);
-            }));
+        child: searchedArticles.isEmpty
+            ? Center(
+                child: Text("Aradığınız kelimeyle ilgili bir haber bulunamadı"),
+              )
+            : ListView.builder(
+                itemCount: this.searchedArticles.length,
+                itemBuilder: (context, index) {
+                  Article article = this.searchedArticles[index];
+                  return BlogTile(
+                      imageUrl: article.image,
+                      title: article.title,
+                      description: article.description,
+                      url: article.link);
+                }));
   }
 }
