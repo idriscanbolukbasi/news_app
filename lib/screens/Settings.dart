@@ -76,186 +76,207 @@ class _SettingScreenState extends State<SettingScreen> {
           )
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: CircleAvatar(
-                  backgroundImage: user.photoURL == null
-                      ? AssetImage(
-                          "assets/user.png",
-                        )
-                      : NetworkImage(user.photoURL),
-                  radius: 50,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: CircleAvatar(
+                    backgroundImage: user.photoURL == null
+                        ? AssetImage(
+                            "assets/user.png",
+                          )
+                        : NetworkImage(user.photoURL),
+                    radius: 50,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                user.email,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  user.email,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Karanlık Tema : ",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Karanlık Tema : ",
+                      textAlign: TextAlign.start,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    Switch(
+                        activeColor: Colors.blue,
+                        value: isDark,
+                        onChanged: (value) {
+                          isDark = !isDark;
+                          AdaptiveTheme.of(context).toggleThemeMode();
+                        })
+                  ],
+                ),
+              ),
+              Divider(
+                height: 5,
+                thickness: 2,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                child: Text(
+                  "Haber Kaynağı : ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+              ),
+              Divider(
+                height: 5,
+                thickness: 2,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Anadolu Ajansı"),
+                    CachedNetworkImage(
+                      imageUrl:
+                          "https://cdnassets.aa.com.tr/assets/images/aalogomin.png",
+                      height: 30,
+                      color: isDark ? Colors.white : Colors.black,
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                child: Text(
+                  "Geliştirici : ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+              ),
+              Divider(
+                height: 5,
+                thickness: 2,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("İdris Can Bölükbaşı", style: TextStyle(fontSize: 16)),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: InkWell(
+                            onTap: () => openBrowser(
+                                "https://www.instagram.com/idriscanbolukbasi/"),
+                            child: Image.asset(
+                              "assets/instagram_icon.png",
+                              height: 40,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: InkWell(
+                            onTap: () => openBrowser(
+                                "https://www.linkedin.com/in/idriscanbolukbasi/"),
+                            child: Image.asset(
+                              "assets/linkedin_icon.png",
+                              height: 40,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: InkWell(
+                            onTap: () =>
+                                openBrowser("https://github.com/icanbolukbasi"),
+                            child: Image.asset(
+                              "assets/github_icon.png",
+                              height: 40,
+                              color: isDark ? Colors.white : Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                child: Text(
+                  "Uygulama Bilgileri : ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                ),
+              ),
+              Divider(
+                height: 5,
+                thickness: 2,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Haber ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        Text(
+                          "Uygulaması",
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )
+                      ],
+                    ),
+                    Text(
+                      "v1.2",
+                      style: TextStyle(fontSize: 16),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0, bottom: 16.0),
+                child: InkWell(
+                  onTap: () {
+                    showLicensePage(
+                      context: context,
+                    );
+                  },
+                  child: Text(
+                    "Lisansları görmek için tıklayın",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
                   ),
-                  Switch(
-                      activeColor: Colors.blue,
-                      value: isDark,
-                      onChanged: (value) {
-                        isDark = !isDark;
-                        AdaptiveTheme.of(context).toggleThemeMode();
-                      })
-                ],
+                ),
               ),
-            ),
-            Divider(
-              height: 5,
-              thickness: 2,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Text(
-                "Haber Kaynağı : ",
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-            ),
-            Divider(
-              height: 5,
-              thickness: 2,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Anadolu Ajansı"),
-                  CachedNetworkImage(
-                    imageUrl:
-                        "https://cdnassets.aa.com.tr/assets/images/aalogomin.png",
-                    height: 30,
-                    color: isDark ? Colors.white : Colors.black,
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Text(
-                "Geliştirici : ",
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-            ),
-            Divider(
-              height: 5,
-              thickness: 2,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("İdris Can Bölükbaşı", style: TextStyle(fontSize: 16)),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: InkWell(
-                          onTap: () => openBrowser(
-                              "https://www.instagram.com/idriscanbolukbasi/"),
-                          child: Image.asset(
-                            "assets/instagram_icon.png",
-                            height: 40,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: InkWell(
-                          onTap: () => openBrowser(
-                              "https://www.linkedin.com/in/idriscanbolukbasi/"),
-                          child: Image.asset(
-                            "assets/linkedin_icon.png",
-                            height: 40,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: InkWell(
-                          onTap: () =>
-                              openBrowser("https://github.com/icanbolukbasi"),
-                          child: Image.asset(
-                            "assets/github_icon.png",
-                            height: 40,
-                            color: isDark ? Colors.white : Colors.black,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Text(
-                "Uygulama Bilgileri : ",
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-            ),
-            Divider(
-              height: 5,
-              thickness: 2,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Haber ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      Text(
-                        "Uygulaması",
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      )
-                    ],
-                  ),
-                  Text(
-                    "v1.2",
-                    style: TextStyle(fontSize: 16),
-                  )
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
